@@ -235,4 +235,116 @@ public class QATest{
 
     }
 
+        
+	@Test
+	public void MoveOutOfBoundsTest() { //R1
+		Robot c= new Robot();
+		c.Input_command("I 10");
+		//North
+		ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+		PrintStream printStream = new PrintStream(outputStream);
+		System.setOut(printStream);
+		c.Input_command("M 11");
+		String printedOutput = outputStream.toString().trim();
+		System.setOut(System.out);
+		Assertions.assertEquals("Movement out of Room not allowed", printedOutput);
+        //East
+		c.Input_command("I 10");
+        c.Input_command("R");
+		outputStream = new ByteArrayOutputStream();
+		printStream = new PrintStream(outputStream);
+		System.setOut(printStream);
+		c.Input_command("M 11");
+		printedOutput = outputStream.toString().trim();
+		System.setOut(System.out);
+		Assertions.assertEquals("Movement out of Room not allowed", printedOutput);
+        //South
+		c.Input_command("I 10");
+        c.Input_command("R");
+        c.Input_command("R");
+		outputStream = new ByteArrayOutputStream();
+		printStream = new PrintStream(outputStream);
+		System.setOut(printStream);
+		c.Input_command("M 11");
+		printedOutput = outputStream.toString().trim();
+		System.setOut(System.out);
+		Assertions.assertEquals("Movement out of Room not allowed", printedOutput);
+        //West
+        c.Input_command("I 10");
+        c.Input_command("L");
+		outputStream = new ByteArrayOutputStream();
+		printStream = new PrintStream(outputStream);
+		System.setOut(printStream);
+		c.Input_command("M 11");
+		printedOutput = outputStream.toString().trim();
+		System.setOut(System.out);
+		Assertions.assertEquals("Movement out of Room not allowed", printedOutput);
+}
+  
+	
+	@Test
+	public void MoveFunctionTest() { //R1
+		
+		//PenDownOneRotation
+		Robot c= new Robot();
+		c.Input_command("I 10");
+		c.Input_command("D");
+		c.Input_command("M 9");
+		for(int i=0;i<10;i++) {
+			
+			Assertions.assertEquals(i,c.way.get(i)[1]);
+		}
+		
+		c.Input_command("R");
+		c.Input_command("M 9");
+        for(int i=0;i<10;i++) {
+			
+			Assertions.assertEquals(i,c.way.get(11+i)[0]);
+		}
+        
+        c.Input_command("R");
+		c.Input_command("M 9");
+       for(int i=0;i<10;i++) {
+			
+			Assertions.assertEquals(9-i,c.way.get(22+i)[1]);
+		}
+        c.Input_command("R");
+		c.Input_command("M 9");
+		 for(int i=0;i<10;i++) {
+				
+				Assertions.assertEquals(9-i,c.way.get(33+i)[0]);
+		}
+        
+        //PenUpOneRotation
+		c.Input_command("U");
+		c.Input_command("I 10");
+		c.Input_command("M 9");
+		
+
+		Assertions.assertEquals(0,c.x_Coordinate);
+		Assertions.assertEquals(9,c.y_Coordinate);
+		
+		
+		c.Input_command("R");
+		c.Input_command("M 9");
+		
+		Assertions.assertEquals(9,c.x_Coordinate);
+		Assertions.assertEquals(9,c.y_Coordinate);
+        
+        c.Input_command("R");
+		c.Input_command("M 9");
+		
+		Assertions.assertEquals(9,c.x_Coordinate);
+		Assertions.assertEquals(0,c.y_Coordinate);
+        
+        c.Input_command("R");
+		c.Input_command("M 9");
+		
+		Assertions.assertEquals(0,c.x_Coordinate);
+		Assertions.assertEquals(0,c.y_Coordinate);
+
+	}
+
+    
+
 }
