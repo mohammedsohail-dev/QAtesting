@@ -2,12 +2,15 @@ package test;
 
 
 
+import org.junit.jupiter.api.Assertions;
 import sourceCode.*;
 
 import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.*;
 
 
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 import java.util.Random;
 
 import org.junit.Before;
@@ -93,6 +96,143 @@ public class QATest{
             String s = c.Direction;
             assertEquals(next_dir(curr, k),s);
         }
+    }
+    @Test
+    public void InvalidInputTest() {
+
+        Robot c =  new Robot();
+        c.Input_command("I 10");
+        c.Input_command("M 3");
+        c.Input_command("L");
+        c.Input_command("R");
+        c.Input_command("U");
+        c.Input_command("P");
+        c.Input_command("C");
+
+
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        PrintStream printStream = new PrintStream(outputStream);
+        System.setOut(printStream);
+        c.Input_command("X");
+        String printedOutput = outputStream.toString().trim();
+        System.setOut(System.out);
+        Assertions.assertEquals("Error, Command not supported", printedOutput);
+        System.out.println(printedOutput);
+
+        c.Input_command("I 10");
+
+        outputStream = new ByteArrayOutputStream();
+        printStream = new PrintStream(outputStream);
+        System.setOut(printStream);
+        c.Input_command("I");
+        printedOutput = outputStream.toString().trim();
+        System.setOut(System.out);
+        Assertions.assertEquals("Error, I need two values to process", printedOutput);
+//
+        c.Input_command("I 10");
+
+        outputStream = new ByteArrayOutputStream();
+        printStream = new PrintStream(outputStream);
+        System.setOut(printStream);
+        c.Input_command("I 5.5");
+        printedOutput = outputStream.toString().trim();
+        System.setOut(System.out);
+        Assertions.assertEquals("Error, I can only accept Integer values", printedOutput);
+
+        c.Input_command("I 10");
+
+        outputStream = new ByteArrayOutputStream();
+        printStream = new PrintStream(outputStream);
+        System.setOut(printStream);
+        c.Input_command("I 1");
+        printedOutput = outputStream.toString().trim();
+        System.setOut(System.out);
+        Assertions.assertEquals("Error, I value should be more than 1", printedOutput);
+
+        c.Input_command("C");
+
+        outputStream = new ByteArrayOutputStream();
+        printStream = new PrintStream(outputStream);
+        System.setOut(printStream);
+        c.Input_command("C 2");
+        printedOutput = outputStream.toString().trim();
+        System.setOut(System.out);
+        Assertions.assertEquals("Error, C can't accept any additional values", printedOutput);
+
+        c.Input_command("D");
+        outputStream = new ByteArrayOutputStream();
+        printStream = new PrintStream(outputStream);
+        System.setOut(printStream);
+        c.Input_command("D 2");
+        printedOutput = outputStream.toString().trim();
+        System.setOut(System.out);
+        Assertions.assertEquals("Error, D can't accept any additional values", printedOutput);
+//
+        c.Input_command("U");
+        outputStream = new ByteArrayOutputStream();
+        printStream = new PrintStream(outputStream);
+        System.setOut(printStream);
+        c.Input_command("U 2");
+        printedOutput = outputStream.toString().trim();
+        System.setOut(System.out);
+        Assertions.assertEquals("Error, U can't accept any additional values", printedOutput);
+//
+//
+        c.Input_command("M 8");
+        outputStream = new ByteArrayOutputStream();
+        printStream = new PrintStream(outputStream);
+        System.setOut(printStream);
+        c.Input_command("M");
+        printedOutput = outputStream.toString().trim();
+        System.setOut(System.out);
+        Assertions.assertEquals("Error, M needs two values to process", printedOutput);
+//
+        c.Input_command("M 9");
+        outputStream = new ByteArrayOutputStream();
+        printStream = new PrintStream(outputStream);
+        System.setOut(printStream);
+        c.Input_command("M 5.5");
+        printedOutput = outputStream.toString().trim();
+        System.setOut(System.out);
+        Assertions.assertEquals("Error, M can only accept Integer values", printedOutput);
+//
+        c.Input_command("M 9");
+        outputStream = new ByteArrayOutputStream();
+        printStream = new PrintStream(outputStream);
+        System.setOut(printStream);
+        c.Input_command("M 0");
+        printedOutput = outputStream.toString().trim();
+        System.setOut(System.out);
+        Assertions.assertEquals("Error, M value should be at least 1", printedOutput);
+//
+        c.Input_command("L");
+        outputStream = new ByteArrayOutputStream();
+        printStream = new PrintStream(outputStream);
+        System.setOut(printStream);
+        c.Input_command("L 5");
+        printedOutput = outputStream.toString().trim();
+        System.setOut(System.out);
+        Assertions.assertEquals("Error, L can't accept any additional values", printedOutput);
+
+        c.Input_command("R");
+        outputStream = new ByteArrayOutputStream();
+        printStream = new PrintStream(outputStream);
+        System.setOut(printStream);
+        c.Input_command("R 5");
+        printedOutput = outputStream.toString().trim();
+        System.setOut(System.out);
+        Assertions.assertEquals("Error, R can't accept any additional values", printedOutput);
+
+        c.Input_command("P");
+        outputStream = new ByteArrayOutputStream();
+        printStream = new PrintStream(outputStream);
+        System.setOut(printStream);
+        c.Input_command("P 5");
+        printedOutput = outputStream.toString().trim();
+        System.setOut(System.out);
+        Assertions.assertEquals("Error, P can't accept any additional values", printedOutput);
+
+
     }
 
 }

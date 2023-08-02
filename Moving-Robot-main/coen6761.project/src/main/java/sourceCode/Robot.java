@@ -41,16 +41,16 @@ public class Robot {
         String k = Value[0].toUpperCase();
         int Positions = 0;
 
-        if (k.equals("I")) {
+        if (k.equals("I")) {//done
             if (Value.length < 2) {
                 System.out.println("Error, I need two values to process");
                 return;
             }
-            if (!(Value[1].matches("\\d+"))) {
+            if (!(Value[1].matches("\\d+"))) {//done
                 System.out.println("Error, I can only accept Integer values");
                 return;
             }
-            if (Integer.parseInt(Value[1]) <= 1) {
+            if (Integer.parseInt(Value[1]) <= 1) {//done
                 System.out.println("Error, I value should be more than 1");
                 return;
             }
@@ -66,7 +66,7 @@ public class Robot {
             Pendown = false;
             Direction = NORTH;
             System.out.println("Room is set to " + Room_size + " x " + Room_size + " array.");
-        } else if (k.equals("C")) {
+        } else if (k.equals("C")) {//done
             if (Value.length > 1) {
                 System.out.println("Error, C can't accept any additional values");
                 return;
@@ -78,7 +78,7 @@ public class Robot {
                 System.out.println("Error, initialize Room to move");
                 return;
             }
-            if (Value.length > 1) {
+            if (Value.length > 1) {// done
                 System.out.println("Error, D can't accept any additional values");
                 return;
             }
@@ -90,7 +90,7 @@ public class Robot {
                 System.out.println("Error, initialize Room to move");
                 return;
             }
-            if (Value.length > 1) {
+            if (Value.length > 1) {// done
                 System.out.println("Error, U can't accept any additional values");
                 return;
             }
@@ -102,42 +102,42 @@ public class Robot {
                 System.out.println("Error, initialize Room to move");
                 return;
             }
-            if (Value.length < 2) {
+            if (Value.length < 2) {//done
                 System.out.println("Error, M needs two values to process");
                 return;
             }
-            if (!(Value[1].matches("\\d+"))) {
+            if (!(Value[1].matches("\\d+"))) {//done
                 System.out.println("Error, M can only accept Integer values");
                 return;
             }
             Positions = Integer.parseInt(Value[1]);
-            if (Positions < 1) {
+            if (Positions < 1) {//done
                 System.out.println("Error, M value should be at least 1");
                 return;
             }
             move(Positions);
         } else if (k.equals("L")) {
-            if (Value.length > 1) {
+            if (Value.length > 1) {//done
                 System.out.println("Error, L can't accept any additional values");
                 return;
             }
             Move_Left();
         } else if (k.equals("R")) {
-            if (Value.length > 1) {
+            if (Value.length > 1) {//done
                 System.out.println("Error, R can't accept any additional values");
                 return;
             }
             
             Move_Right();
         } else if (k.equals("P")) {
-            if (Value.length > 1) {
+            if (Value.length > 1) {//done
                 System.out.println("Error, P can't accept any additional values");
                 return;
             }
             updateRoom();
             Room_Map();
         } else if (k.equals("Q")) {
-            if (Value.length > 1) {
+            if (Value.length > 1) {//done
                 System.out.println("Error, Q can't accept any additional values");
                 return;
             }
