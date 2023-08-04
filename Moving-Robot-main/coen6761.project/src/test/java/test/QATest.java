@@ -20,7 +20,7 @@ public class QATest{
     String next_dir(String Current, String input){  //R2
         if (Current.equals("north") && (input.equals("R") || input.equals("r")))
             return "east";
-        else if (Current.equals("north") && (input.equals("L") || input.equals("L")))
+        else if (Current.equals("north") && (input.equals("L") || input.equals("l")))
             return "west";
         else if (Current.equals("south") && (input.equals("R") || input.equals("r")))
             return "west";
