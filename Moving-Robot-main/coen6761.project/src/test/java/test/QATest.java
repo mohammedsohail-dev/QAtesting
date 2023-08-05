@@ -289,59 +289,111 @@ public class QATest{
 		Robot c= new Robot();
 		c.Input_command("I 10");
 		c.Input_command("D");
+		ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+		PrintStream printStream = new PrintStream(outputStream);
+		System.setOut(printStream);
 		c.Input_command("M 9");
 		for(int i=0;i<10;i++) {
 			
 			Assertions.assertEquals(i,c.way.get(i)[1]);
 		}
+		String printedOutput = outputStream.toString().trim();
+		System.setOut(System.out);
+		Assertions.assertEquals("Moved to position: 0, 9", printedOutput);
+		
+		
+		
 		
 		c.Input_command("R");
+		outputStream = new ByteArrayOutputStream();
+		printStream = new PrintStream(outputStream);
+		System.setOut(printStream);
 		c.Input_command("M 9");
         for(int i=0;i<10;i++) {
 			
 			Assertions.assertEquals(i,c.way.get(11+i)[0]);
 		}
-        
+        printedOutput = outputStream.toString().trim();
+		System.setOut(System.out);
+		Assertions.assertEquals("Moved to position: 9, 9", printedOutput);
+		
+		
+		
         c.Input_command("R");
+		outputStream = new ByteArrayOutputStream();
+		printStream = new PrintStream(outputStream);
+		System.setOut(printStream);
 		c.Input_command("M 9");
        for(int i=0;i<10;i++) {
 			
 			Assertions.assertEquals(9-i,c.way.get(22+i)[1]);
 		}
-        c.Input_command("R");
+       
+       printedOutput = outputStream.toString().trim();
+	   System.setOut(System.out);
+	   Assertions.assertEquals("Moved to position: 9, 0", printedOutput);
+        
+		
+		
+		c.Input_command("R");
+		outputStream = new ByteArrayOutputStream();
+		printStream = new PrintStream(outputStream);
+		System.setOut(printStream);
 		c.Input_command("M 9");
 		 for(int i=0;i<10;i++) {
 				
 				Assertions.assertEquals(9-i,c.way.get(33+i)[0]);
 		}
-        
-        //PenUpOneRotation
-		c.Input_command("U");
-		c.Input_command("I 10");
-		c.Input_command("M 9");
-		
-
-		Assertions.assertEquals(0,c.x_Coordinate);
-		Assertions.assertEquals(9,c.y_Coordinate);
-		
-		
-		c.Input_command("R");
-		c.Input_command("M 9");
-		
-		Assertions.assertEquals(9,c.x_Coordinate);
-		Assertions.assertEquals(9,c.y_Coordinate);
-        
-        c.Input_command("R");
-		c.Input_command("M 9");
-		
-		Assertions.assertEquals(9,c.x_Coordinate);
-		Assertions.assertEquals(0,c.y_Coordinate);
-        
-        c.Input_command("R");
-		c.Input_command("M 9");
-		
-		Assertions.assertEquals(0,c.x_Coordinate);
-		Assertions.assertEquals(0,c.y_Coordinate);
+ 
+		 printedOutput = outputStream.toString().trim();
+		 System.setOut(System.out);
+		 Assertions.assertEquals("Moved to position: 0, 0", printedOutput);
+		 
+			//PenUpOneRotation
+			c.Input_command("I 10");
+			outputStream = new ByteArrayOutputStream();
+			printStream = new PrintStream(outputStream);
+			System.setOut(printStream);
+			c.Input_command("M 9");
+			Assertions.assertEquals(0,c.x_Coordinate);
+			Assertions.assertEquals(9,c.y_Coordinate);
+			printedOutput = outputStream.toString().trim();
+			System.setOut(System.out);
+			Assertions.assertEquals("Robot is moving freely as pen is up. The new coordinates are: 0, 9 (not updated to print in Room map)", printedOutput);
+			
+			
+			c.Input_command("R");
+			outputStream = new ByteArrayOutputStream();
+			printStream = new PrintStream(outputStream);
+			System.setOut(printStream);
+			c.Input_command("M 9");
+			Assertions.assertEquals(9,c.x_Coordinate);
+			Assertions.assertEquals(9,c.y_Coordinate);
+	        printedOutput = outputStream.toString().trim();
+			System.setOut(System.out);
+			Assertions.assertEquals("Robot is moving freely as pen is up. The new coordinates are: 9, 9 (not updated to print in Room map)", printedOutput);
+			       
+	        c.Input_command("R");
+			outputStream = new ByteArrayOutputStream();
+			printStream = new PrintStream(outputStream);
+			System.setOut(printStream);
+			c.Input_command("M 9");
+			Assertions.assertEquals(9,c.x_Coordinate);
+			Assertions.assertEquals(0,c.y_Coordinate);
+	       printedOutput = outputStream.toString().trim();
+			System.setOut(System.out);
+			Assertions.assertEquals("Robot is moving freely as pen is up. The new coordinates are: 9, 0 (not updated to print in Room map)", printedOutput);
+	        
+			c.Input_command("R");
+			outputStream = new ByteArrayOutputStream();
+			printStream = new PrintStream(outputStream);
+			System.setOut(printStream);
+			c.Input_command("M 9");
+			Assertions.assertEquals(0,c.x_Coordinate);
+			Assertions.assertEquals(0,c.y_Coordinate);
+		    printedOutput = outputStream.toString().trim();
+		    System.setOut(System.out);
+			Assertions.assertEquals("Robot is moving freely as pen is up. The new coordinates are: 0, 0 (not updated to print in Room map)", printedOutput);
 
 	}
 
