@@ -8,10 +8,10 @@
 
 This Java-based Robot Simulator lets you control a robot in a 2D room using simple text commands. It supports movement, pen up/down drawing, grid printing, and boundary validation. Tests and coverage are integrated using **JUnit** and **JaCoCo**.
 
----
+
 
 ## 📁 Project Structure
-
+```
 Moving-Robot-main/
 ├── src/
 │ ├── main/java/sourceCode/
@@ -22,9 +22,9 @@ Moving-Robot-main/
 ├── target/ # Compiled classes and reports
 ├── pom.xml # Maven configuration
 └── README.md
+```
 
 
----
 
 ## 🔧 Features
 
